@@ -1,3 +1,0 @@
-# DipyApp
-
-Testelitest
