@@ -1,7 +1,7 @@
 {
   "name": "dipyapp",
   "version": "1.0.0",
-  "description": "A modern web application built with Next.js.",
+  "description": " - Activity Suggester.",
   "main": "index.js",
   "scripts": {
     "build:css": "tailwindcss -i ./tailwind-input.css -o ./public/css/style.css --minify",
