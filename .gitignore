@@ -34,3 +34,6 @@ yarn-error.log*
 .vscode/
 *.swp
 *.swo 
+
+# cursor-tasks
+.cursor-tasks.md
