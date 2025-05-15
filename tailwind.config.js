@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'lilita': ['Lilita One', 'cursive']
+        'lilita': ['lilita', 'cursive']
       },
       colors: {
         amber: {
