@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         activityTagsElement.innerHTML = '';
         activity.tags.forEach(tag => {
             const tagSpan = document.createElement('span');
-            tagSpan.className = 'bg-amber-100 text-amber-800 text-sm font-semibold px-4 py-2 rounded-full shadow-sm';
+            tagSpan.className = 'bg-amber-100 text-amber-800 text-sm font-semibold px-4 py-2 rounded-full';
             tagSpan.textContent = tag;
             activityTagsElement.appendChild(tagSpan);
         });
