@@ -10,6 +10,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const priceFilter = document.getElementById('price-filter');
     const exertionFilter = document.getElementById('exertion-filter');
 
+    // Get references for collapsible filters (FE-JS-IDX-COL-001)
+    const toggleFiltersBtn = document.getElementById('toggle-filters-btn');
+    const additionalFiltersContainer = document.getElementById('additional-filters-container');
+
+    // Add toggle filters button click handler (FE-JS-IDX-COL-002, FE-JS-IDX-COL-003)
+    toggleFiltersBtn.addEventListener('click', () => {
+        const isHidden = additionalFiltersContainer.classList.contains('hidden');
+        if (isHidden) {
+            additionalFiltersContainer.classList.remove('hidden');
+            toggleFiltersBtn.textContent = 'Hide Filters';
+        } else {
+            additionalFiltersContainer.classList.add('hidden');
+            toggleFiltersBtn.textContent = '+ Filters';
+        }
+    });
+
     // Add form submit event listener (FE-JS-IDX-AI-002)
     filterForm.addEventListener('submit', async (event) => {
         // Prevent default form submission (FE-JS-IDX-AI-003)
