@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        resultMessageArea.innerHTML = '<span class="text-blue-600">Generating another activity...</span>';
+        resultMessageArea.innerHTML = '<span class="text-gray-600">Generating another activity...</span>';
         regenerateActivityBtn.disabled = true;
 
         try {
