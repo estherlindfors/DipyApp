@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
 
         // Set loading state (FE-JS-IDX-AI-004)
-        messageArea.innerHTML = '<span class="text-blue-600">Finding an activity...</span>';
+        messageArea.innerHTML = '<span class="text-gray-600">Finding an activity...</span>';
         generateBtn.disabled = true;
 
         try {
