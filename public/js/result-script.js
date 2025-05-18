@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
         activityTitleElement.textContent = activity.title;
         activityImageElement.src = activity.image_url;
         activityImageElement.alt = activity.title;
-        activityDescriptionElement.textContent = activity.description;
+        const fixedDescription = activity.description.replace(/\\n/g, '\n');
+    activityDescriptionElement.textContent = fixedDescription;
         
         // Clear and populate tags
         activityTagsElement.innerHTML = '';
