@@ -2,6 +2,7 @@
 
 // Declare storedFilterParams at the top of script scope (FE-JS-RSLT-AI-002)
 let storedFilterParams = null;
+let isCurrentlyTruncated = true; // Track truncation state
 
 // Add DOMContentLoaded event listener (FE-JS-RSLT-AI-001)
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const activityTagsElement = document.getElementById('activity-tags');
     const regenerateActivityBtn = document.getElementById('regenerate-activity-btn');
     const resultMessageArea = document.getElementById('result-message-area');
+    const toggleDescriptionBtn = document.getElementById('toggle-description-btn');
 
     // Retrieve data (FE-JS-RSLT-AI-003, FE-JS-RSLT-AI-004)
     const activityData = JSON.parse(sessionStorage.getItem('activityResult'));
@@ -23,12 +25,49 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    // Function to update description display
+    function updateDescriptionDisplay() {
+        const fullText = activityDescriptionElement.dataset.fullText || "";
+        const firstLineBreakIdx = fullText.indexOf('\n');
+        let canBeTruncated = false;
+        let textToShow = fullText;
+
+        if (firstLineBreakIdx > 0 && firstLineBreakIdx < fullText.length - 1) {
+            canBeTruncated = true;
+        }
+
+        if (isCurrentlyTruncated && canBeTruncated) {
+            textToShow = fullText.substring(0, firstLineBreakIdx);
+            toggleDescriptionBtn.textContent = 'Read more';
+            toggleDescriptionBtn.classList.remove('hidden');
+        } else {
+            textToShow = fullText;
+            if (canBeTruncated) {
+                toggleDescriptionBtn.textContent = 'Hide';
+                toggleDescriptionBtn.classList.remove('hidden');
+            } else {
+                toggleDescriptionBtn.classList.add('hidden');
+            }
+        }
+        activityDescriptionElement.textContent = textToShow;
+    }
+
+    // Add click event listener for toggle description button
+    toggleDescriptionBtn.addEventListener('click', () => {
+        isCurrentlyTruncated = !isCurrentlyTruncated;
+        updateDescriptionDisplay();
+    });
+
     // Render function (FE-JS-RSLT-AI-006)
     function displayActivity(activity) {
         activityTitleElement.textContent = activity.title;
         activityImageElement.src = activity.image_url;
         activityImageElement.alt = activity.title;
-        activityDescriptionElement.textContent = activity.description;
+        
+        // Store full description and update display
+        activityDescriptionElement.dataset.fullText = activity.description;
+        isCurrentlyTruncated = true;
+        updateDescriptionDisplay();
         
         // Clear and populate tags
         activityTagsElement.innerHTML = '';
