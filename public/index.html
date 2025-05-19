@@ -9,9 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <style>
 h1 {font-family: "Lilita One";}
+h2 {font-family: "Rock Salt";} 
 </style>
 </head>
 <body class="bg-stone-100 font-sans">
@@ -19,18 +21,18 @@ h1 {font-family: "Lilita One";}
     <div class="container mx-auto p-4 min-h-screen flex flex-col items-center pt-10 sm:pt-16">
         <header class="text-center mb-4 sm:mb-4">
             <h1 class="font-lilita text-5xl sm:text-7xl text-amber-500 text-center mb-6 sm:mb-6">DIPY</h1>
-            <p class="text-lg text-gray-600 font-semibold max-w-2xl mx-auto mb-4 sm:mb-4">
+            <h2 class="text-lg text-gray-600 font-semibold max-w-2xl mx-auto mb-2 sm:mb-2">
                 Discover your next adventure!
-            </p>
+            </h2>
+        </header>
+        <main class="w-full max-w-lg"></main>
+        <form id="filter-form" class="w-full max-w-lg bg-white p-6 sm:p-8 rounded-lg">
             <p class="text-sm max-w-md text-gray-600 mb-5">
                 Pick your filters or throw caution to the wind and generate a random activity. Not feeling it? Just generate a new one. But hey – we dare you to try something even if you're unsure. You might be surprised!
               </p>
-        </header>
 
-        <main class="w-full max-w-lg">
-            <form id="filter-form" class="w-full max-w-lg bg-white p-6 sm:p-8 rounded-lg">
                 <!-- Location Filter -->
-                <div class="mb-6">
+                <div class="mb-6 mt-8">
                     <label class="block mb-2 text-lg font-medium text-gray-800">Location</label>
                     <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-2 sm:space-y-0">
                         <label for="loc-stockholm" class="inline-flex items-center cursor-pointer text-gray-700 hover:text-amber-600">
