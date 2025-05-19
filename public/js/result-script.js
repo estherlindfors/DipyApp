@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const regenerateActivityBtn = document.getElementById('regenerate-activity-btn');
     const resultMessageArea = document.getElementById('result-message-area');
     const toggleDescriptionBtn = document.getElementById('toggle-description-btn');
+    const shareActivityBtn = document.getElementById('share-activity-btn');
 
     // Retrieve data (FE-JS-RSLT-AI-003, FE-JS-RSLT-AI-004)
     const activityData = JSON.parse(sessionStorage.getItem('activityResult'));
@@ -77,7 +78,48 @@ document.addEventListener('DOMContentLoaded', () => {
             tagSpan.textContent = tag;
             activityTagsElement.appendChild(tagSpan);
         });
+
+        // Check for Web Share API support and show/hide share button
+        if (navigator.share) {
+            shareActivityBtn.classList.remove('hidden');
+        } else {
+            shareActivityBtn.classList.add('hidden');
+            console.log('Web Share API not supported on this browser.');
+        }
     }
+
+    // Add click event listener for share button
+    shareActivityBtn.addEventListener('click', async () => {
+        const currentActivity = JSON.parse(sessionStorage.getItem('activityResult'));
+        if (!currentActivity) {
+            console.error('No activity data found in session storage to share.');
+            resultMessageArea.innerHTML = '<span class="text-red-600">Error: No activity data available to share.</span>';
+            return;
+        }
+
+        const shareData = {
+            title: currentActivity.title || 'Check out this activity from Dipy!',
+            text: currentActivity.description || 'I found a fun activity suggestion on Dipy.',
+            url: window.location.href
+        };
+
+        try {
+            await navigator.share(shareData);
+            console.log('Activity shared successfully');
+            resultMessageArea.innerHTML = '<span class="text-green-600">Activity shared successfully!</span>';
+            setTimeout(() => {
+                resultMessageArea.innerHTML = '';
+            }, 3000);
+        } catch (err) {
+            console.error('Error sharing activity:', err);
+            if (err.name !== 'AbortError') {
+                resultMessageArea.innerHTML = '<span class="text-red-600">Error sharing activity. Please try again.</span>';
+                setTimeout(() => {
+                    resultMessageArea.innerHTML = '';
+                }, 3000);
+            }
+        }
+    });
 
     // Initial display (FE-JS-RSLT-AI-007)
     displayActivity(activityData);
