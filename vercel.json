@@ -4,7 +4,10 @@
       "memory": 128
     }
   },
+  "cleanUrls": true,
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" }
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/result", "destination": "/result.html" }
   ]
-} 
+}
