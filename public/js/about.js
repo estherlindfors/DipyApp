@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                          `Price: ${encodeURIComponent(price)}\n\n` +
                          `Thanks!\n`;
 
-            let mailtoLink = `mailto:dipy@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`; // Body parts are already encoded
+            let mailtoLink = `mailto:to.dipy.app@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`; // Body parts are already encoded
 
             // Check for mailto link length limits (rarely an issue for this amount of data)
             // Typical browser limits are around 2000 characters for the whole URL.

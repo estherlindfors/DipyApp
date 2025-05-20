@@ -914,6 +914,11 @@
       margin-top: calc(var(--spacing) * 0);
     }
   }
+  .md\:mb-8 {
+    @media (width >= 48rem) {
+      margin-bottom: calc(var(--spacing) * 8);
+    }
+  }
   .md\:flex {
     @media (width >= 48rem) {
       display: flex;
