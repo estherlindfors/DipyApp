@@ -583,11 +583,20 @@
   .whitespace-pre-line {
     white-space: pre-line;
   }
+  .text-amber-400 {
+    color: var(--color-amber-400);
+  }
   .text-amber-500 {
     color: var(--color-amber-500);
   }
   .text-amber-600 {
     color: var(--color-amber-600);
+  }
+  .text-gray-200 {
+    color: var(--color-gray-200);
+  }
+  .text-gray-300 {
+    color: var(--color-gray-300);
   }
   .text-gray-400 {
     color: var(--color-gray-400);
@@ -612,6 +621,9 @@
   }
   .text-white {
     color: var(--color-white);
+  }
+  .italic {
+    font-style: italic;
   }
   .shadow-lg {
     --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
