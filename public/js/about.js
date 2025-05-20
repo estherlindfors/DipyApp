@@ -66,37 +66,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // "Add your own activity" Form Mailto Logic
-    const addActivityForm = document.getElementById('add-activity-form');
-    if (addActivityForm) {
-        addActivityForm.addEventListener('submit', function(event) {
-            event.preventDefault();
+   // "Add your own activity" Form Mailto Logic
+const addActivityForm = document.getElementById('add-activity-form');
+if (addActivityForm) {
+    addActivityForm.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-            const title = document.getElementById('activity-title').value;
-            const description = document.getElementById('activity-description').value;
-            const location = document.getElementById('activity-location').value;
-            const participants = document.getElementById('activity-participants').value;
-            const price = document.getElementById('activity-price').value;
+        const title = document.getElementById('activity-title').value;
+        const description = document.getElementById('activity-description').value;
+        const location = document.getElementById('activity-location').value;
+        const participants = document.getElementById('activity-participants').value;
+        const price = document.getElementById('activity-price').value;
 
-            const subject = `Dipy - New Activity Suggestion: ${title}`;
-            const body = `Hello Dipy Team,\n\nI'd like to suggest a new activity:\n\n` +
-                         `Activity Title: ${encodeURIComponent(title)}\n` +
-                         `Description: ${encodeURIComponent(description)}\n` +
-                         `Location: ${encodeURIComponent(location)}\n` +
-                         `Possible Participants: ${encodeURIComponent(participants)}\n` +
-                         `Price: ${encodeURIComponent(price)}\n\n` +
-                         `Thanks!\n`;
+        const subject = `Dipy - New Activity Suggestion: ${title}`; // Subject can be encoded separately
 
-            let mailtoLink = `mailto:to.dipy.app@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`; // Body parts are already encoded
+        // 1. Construct the body string with raw values and \n for newlines
+        const rawBody = `Hello Dipy Team,\n\nI'd like to suggest a new activity:\n\n` +
+                      `Activity Title: ${title}\n` +                 // Use raw title here
+                      `Description: ${description}\n` +           // Use raw description here
+                      `Location: ${location}\n` +                 // Use raw location here
+                      `Possible Participants: ${participants}\n` + // Use raw participants here
+                      `Price: ${price}\n\n` +                       // Use raw price here
+                      `Thanks!\n`;
 
-            // Check for mailto link length limits (rarely an issue for this amount of data)
-            // Typical browser limits are around 2000 characters for the whole URL.
-            if (mailtoLink.length > 2000) { 
-                alert('The generated email content is too long. Please shorten your descriptions or title.');
-                return;
-            }
+        // 2. Encode the entire rawBody string for the mailto link
+        const encodedBody = encodeURIComponent(rawBody);
+        const encodedSubject = encodeURIComponent(subject);
 
-            window.location.href = mailtoLink;
-        });
-    }
+        let mailtoLink = `mailto:to.dipy.app@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+
+        if (mailtoLink.length > 2000) {
+            alert('The generated email content is too long. Please shorten your descriptions or title.');
+            return;
+        }
+
+        window.location.href = mailtoLink;
+    });
+}
 });
