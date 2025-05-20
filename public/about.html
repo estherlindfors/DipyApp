@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Dipy - Learn more about the spontaneous activity suggester for Gothenburg and Stockholm.">
+    <title>Dipy - About Us</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        h1 {font-family: "Lilita One", cursive;}
+        h2 {font-family: "Rock Salt", cursive;}
+        
+    
+        
+        @media (min-width: 640px) { /* sm breakpoint */
+            .section-title {
+                font-size: 2.25rem; /* text-4xl */
+                line-height: 2.5rem; /* leading-10 */
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Offset for sticky nav. Adjust 70px based on actual nav height */
+        section[id] {
+            scroll-margin-top: 75px; 
+        }
+        /* FAQ icon styling */
+        .faq-icon {
+            transition: transform 0.2s ease-in-out;
+        }
+        button[aria-expanded="true"] .faq-icon {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="bg-stone-100 font-sans">
+
+    <div class="container mx-auto p-4 min-h-screen flex flex-col items-center pt-10 sm:pt-16">
+        
+        <header class="text-center mb-8">
+            <a href="index.html" class="text-decoration-none">
+                 <h1 class="text-4xl sm:text-6xl text-amber-500 mb-4">DIPY</h1>
+            </a>
+            <h2 class="text-xl sm:text-2xl text-gray-700 mb-8">
+                All about Dipy
+            </h2>
+        </header>
+
+        <!-- Anchor Navigation -->
+        <nav class="bg-stone-100/95 backdrop-blur-sm py-3 w-full max-w-3xl sticky top-0 z-20">
+            <div class="max-w-6xl mx-auto px-4">
+              <div class="flex justify-between items-center">
+           
+        
+                <!-- Hamburger (only on small screens) -->
+                <button id="menu-btn" class="block md:hidden text-3xl text-amber-600">
+                  ☰
+                </button>
+              </div>
+        
+              <!-- Nav Menu -->
+              <ul id="menu" class="hidden flex-col space-y-2 pb-2 mt-4 md:mt-0 md:flex md:flex-row md:justify-evenly md:space-y-0 w-full text-center items-center">
+                <li class="md:flex-1"><a href="#what-is-dipy" class="block py-2 text-amber-600 hover:text-amber-800 font-semibold hover:underline">What is Dipy?</a></li>
+                <li class="md:flex-1"><a href="#add-activity" class="block py-2 text-amber-600 hover:text-amber-800 font-semibold hover:underline">Add Activity</a></li>
+                <li class="md:flex-1"><a href="#faq" class="block py-2 text-amber-600 hover:text-amber-800 font-semibold hover:underline">FAQ</a></li>
+                <li class="md:flex-1"><a href="#who-created-dipy" class="block py-2 text-amber-600 hover:text-amber-800 font-semibold hover:underline">Creators</a></li>
+                <li class="md:flex-1"><a href="#future-development" class="block py-2 text-amber-600 hover:text-amber-800 font-semibold hover:underline">Future</a></li>
+              </ul>
+            </div>
+          </nav>
+        
+          <script>
+            const btn = document.getElementById('menu-btn');
+            const menu = document.getElementById('menu');
+        
+            btn.addEventListener('click', () => {
+              menu.classList.toggle('hidden');
+            });
+          </script>
+          
+          
+
+        <main class="w-full max-w-3xl space-y-16">
+
+            <!-- "What is Dipy?" Section -->
+            <section id="what-is-dipy" class="p-6 sm:p-8 bg-white rounded-lg">
+                <h3 class="section-title text-3xl sm:text-2xl font-semibold text-gray-800 mb-4 pb-2 pt-2 text-center">What is Dipy?</h3>
+                <div class="space-y-4 text-gray-700 leading-relaxed text-left pb-2">
+                    <p>Are you in Gothenburg or Stockholm and don't know what to do? We got you covered! Dipy is a mobile-friendly web application that helps you discover spontaneous activities in Gothenburg and Stockholm. By combining location data, randomness, and interactive design, Dipy aims to make it easier—and more fun—to break routines and try something new.</p>
+                    <p>Whether you're looking for a quick solo outing or an activity to enjoy with friends, Dipy provides suggestions tailored to your preferences. With simple filters like area, environment (indoor/outdoor), group size, activity level, and cost, you stay in control while still leaving room for surprise and curiosity.</p>
+                </div>
+            </section>
+
+            <!-- "Add your own activity" Section -->
+            <section id="add-activity" class="p-6 sm:p-8 bg-white rounded-lg">
+                <h3 class="section-title text-3xl sm:text-2xl font-semibold text-gray-800 mb-4 pb-2 pt-2 text-center">Add your own activity!</h3>
+                <p class="text-gray-700 leading-relaxed mb-6 text-left">
+                    Got a great idea for an activity in Stockholm or Gothenburg, or something that can be done anywhere? Share it with us! Fill out the form below, and click "Send Suggestion". This will open your email client with a pre-filled message to <a href="mailto:dipy@gmail.com" class="text-amber-600 hover:text-amber-800">dipy@gmail.com</a>.
+                </p>
+                <form id="add-activity-form" class="space-y-6">
+                    <div>
+                        <label for="activity-title" class="block mb-2 text-md font-medium text-gray-800">Activity title</label>
+                        <input type="text" id="activity-title" name="activity-title" required class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-3">
+                    </div>
+                    <div>
+                        <label for="activity-description" class="block mb-2 text-md font-medium text-gray-800">Description</label>
+                        <textarea id="activity-description" name="activity-description" rows="4" required class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-3"></textarea>
+                    </div>
+                    <div>
+                        <label for="activity-location" class="block mb-2 text-md font-medium text-gray-800">Location</label>
+                        <select id="activity-location" name="activity-location" required class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-3">
+                            <option value="Gothenburg">Gothenburg</option>
+                            <option value="Stockholm">Stockholm</option>
+                            <option value="Possible Anywhere">Possible anywhere</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="activity-participants" class="block mb-2 text-md font-medium text-gray-800">Amount of possible participants (e.g., 1, 2-4, 5+)</label>
+                        <input type="text" id="activity-participants" name="activity-participants" required class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-3">
+                    </div>
+                    <div>
+                        <label for="activity-price" class="block mb-2 text-md font-medium text-gray-800">Price (e.g., Free, 100 SEK, Approx. 250 SEK/person)</label>
+                        <input type="text" id="activity-price" name="activity-price" required class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-3">
+                    </div>
+                    <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-amber-300 text-lg mt-2">
+                        Send Suggestion
+                    </button>
+                </form>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="p-6 sm:p-8 bg-white rounded-lg">
+                <h3 class="section-title text-3xl sm:text-2xl font-semibold text-gray-800 mb-4 pb-2 pt-2 text-center">Frequently asked questions</h3>
+                <div class="space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item bg-stone-50 rounded-lg shadow-sm">
+                        <h4 id="faq-q1-heading" class="text-md sm:text-lg font-medium">
+                            <button 
+                                class="faq-question w-full text-left p-4 text-gray-800 hover:text-amber-700 flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-400 rounded-lg"
+                                aria-expanded="false" 
+                                aria-controls="faq-a1">
+                                <span>What do the different levels of exertion mean?</span>
+                                <span class="faq-icon text-2xl leading-none font-light text-amber-600 transform transition-transform duration-200">+</span>
+                            </button>
+                        </h4>
+                        <div id="faq-a1" 
+                             class="faq-answer p-4 pt-2 text-gray-700 leading-relaxed hidden" 
+                             role="region" 
+                             aria-labelledby="faq-q1-heading">
+                            <p class="mb-2">Each activity suggestion includes an exertion level, which helps you match the activity to your current energy level or physical ability:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-1 text-sm sm:text-base">
+                                <li><strong>Low:</strong> Relaxed or passive activities, like visiting a museum or enjoying a scenic view.</li>
+                                <li><strong>Medium:</strong> Activities that involve light movement, such as walking tours or easy hikes.</li>
+                                <li><strong>High:</strong> Energetic or physically demanding activities like climbing, kayaking, or group sports.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item bg-stone-50 rounded-lg shadow-sm">
+                        <h4 id="faq-q2-heading" class="text-md sm:text-lg font-medium">
+                            <button 
+                                class="faq-question w-full text-left p-4 pt-2 text-gray-800 hover:text-amber-700 flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-400 rounded-lg"
+                                aria-expanded="false" 
+                                aria-controls="faq-a2">
+                                <span>Can I control what kind of activities I see?</span>
+                                <span class="faq-icon text-2xl leading-none font-light text-amber-600 transform transition-transform duration-200">+</span>
+                            </button>
+                        </h4>
+                        <div id="faq-a2" 
+                             class="faq-answer p-4 pt-2 text-gray-700 leading-relaxed hidden" 
+                             role="region" 
+                             aria-labelledby="faq-q2-heading">
+                            <p>Yes! Not fully of course, but Dipy allows you to apply filters such as area, indoor/outdoor setting, price range, group size, and more. You can adjust these to get suggestions that fit your situation—without removing the fun of randomness.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 3 -->
+                     <div class="faq-item bg-stone-50 rounded-lg shadow-sm">
+                        <h4 id="faq-q3-heading" class="text-md sm:text-lg font-medium">
+                            <button 
+                                class="faq-question w-full text-left p-4 text-gray-800 hover:text-amber-700 flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-400 rounded-lg"
+                                aria-expanded="false" 
+                                aria-controls="faq-a3">
+                                <span>Is Dipy only for people in Gothenburg and Stockholm?</span>
+                                <span class="faq-icon text-2xl leading-none font-light text-amber-600 transform transition-transform duration-200">+</span>
+                            </button>
+                        </h4>
+                        <div id="faq-a3" 
+                             class="faq-answer p-4 pt-2 text-gray-700 leading-relaxed hidden" 
+                             role="region" 
+                             aria-labelledby="faq-q3-heading">
+                            <p>Currently, Dipy is focused on these two cities, but the concept can be expanded to other locations in the future. We also offer the filter option "Anywhere" as a temporary solution for people who are not in Gothenburg or Stockholm.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 4 -->
+                     <div class="faq-item bg-stone-50 rounded-lg shadow-sm">
+                        <h4 id="faq-q4-heading" class="text-md sm:text-lg font-medium">
+                            <button 
+                                class="faq-question w-full text-left p-4 text-gray-800 hover:text-amber-700 flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-400 rounded-lg"
+                                aria-expanded="false" 
+                                aria-controls="faq-a4">
+                                <span>Do I need to create an account?</span>
+                                <span class="faq-icon text-2xl leading-none font-light text-amber-600 transform transition-transform duration-200">+</span>
+                            </button>
+                        </h4>
+                        <div id="faq-a4" 
+                             class="faq-answer p-4 pt-2 text-gray-700 leading-relaxed hidden" 
+                             role="region" 
+                             aria-labelledby="faq-q4-heading">
+                            <p>No, Dipy is designed to be as simple and spontaneous as possible. No login is required—just open the app and start exploring.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 5 -->
+                     <div class="faq-item bg-stone-50 rounded-lg shadow-sm">
+                        <h4 id="faq-q5-heading" class="text-md sm:text-lg font-medium">
+                            <button 
+                                class="faq-question w-full text-left p-4 text-gray-800 hover:text-amber-700 flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-400 rounded-lg"
+                                aria-expanded="false" 
+                                aria-controls="faq-a5">
+                                <span>Can I share the activities I find?</span>
+                                <span class="faq-icon text-2xl leading-none font-light text-amber-600 transform transition-transform duration-200">+</span>
+                            </button>
+                        </h4>
+                        <div id="faq-a5" 
+                             class="faq-answer p-4 pt-2 text-gray-700 leading-relaxed hidden" 
+                             role="region" 
+                             aria-labelledby="faq-q5-heading">
+                            <p>Absolutely. If you find something exciting, you can easily share it with friends or family to plan together or inspire others. However, this currently works best if you chose the option to share it through text-message.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Who created Dipy? Section -->
+            <section id="who-created-dipy" class="p-6 sm:p-8 bg-white rounded-lg">
+                <h3 class="section-title text-3xl sm:text-2xl font-semibold text-gray-800 mb-4 pb-2 pt-2 text-center">Who Created Dipy?</h3>
+                <div class="space-y-4 text-gray-700 leading-relaxed text-left pb-2">
+                    <p>Dipy was created by Esther Lindfors and Tea Klaréus, students in Digital Design at Kristianstad University (HKR), as a graduation project.</p>
+                    <p>The idea came from a desire to explore how digital tools can support spontaneity and curiosity in everyday life. Through design, user testing, and development, Dipy became a platform that encourages exploration and breaks away from routine—while keeping the user in charge.</p>
+                </div>
+            </section>
+
+            <!-- Future Development Section -->
+            <section id="future-development" class="p-6 sm:p-8 bg-white rounded-lg">
+                <h3 class="section-title text-3xl sm:text-2xl font-semibold text-gray-800 mb-4 pb-2 pt-2 text-center">Future Development</h3>
+                <div class="space-y-4 text-gray-700 leading-relaxed text-left pb-2">
+                    <p>While Dipy currently focuses on activity suggestions in Gothenburg and Stockholm, there are several exciting possibilities for the future.</p>
+                    <p>We see potential in expanding Dipy to more cities, integrating real-time data like weather and events, and offering personalized recommendations based on past interactions.</p>
+                    <p>We're also interested in exploring how Dipy can foster community engagement—perhaps by allowing users to contribute their own favorite activities or discover what others nearby are exploring.</p>
+                    <p>At its core, Dipy will continue to evolve as a playful, flexible tool that encourages exploration, spontaneity, and connection in everyday life.</p>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="mt-16 mb-8 text-center text-gray-600 text-sm">
+            <p>© <script>document.write(new Date().getFullYear())</script> Dipy. All rights reserved.</p>
+            <p class="mt-1">
+                <a href="index.html" class="text-amber-600 hover:text-amber-800">Home</a>
+                <span class="mx-1 text-gray-400">|</span>
+                <a href="about.html" class="text-amber-600 hover:text-amber-800">About</a>
+            </p>
+        </footer>
+
+    </div>
+
+    <script src="js/about.js" defer></script>
+</body>
+</html>
