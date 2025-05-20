@@ -33,7 +33,7 @@ h2 {font-family: "Rock Salt";}
 
                 <!-- Location Filter -->
                 <div class="mb-6 mt-8">
-                    <label class="block mb-2 text-lg font-medium text-gray-800">Location</label>
+                    <label class="block mb-4 text-lg font-medium text-gray-800">Location</label>
                     
                    
         
@@ -50,13 +50,14 @@ h2 {font-family: "Rock Salt";}
                             <input id="loc-anywhere" type="radio" name="location" value="Anywhere" class="form-radio h-5 w-5 text-amber-600 focus:ring-amber-500 border-gray-300">
                             <span class="ml-2">Anywhere</span>
                         </label>
-                        
                     </div>
-                    <div id="geolocation-status" class="text-sm text-gray-500 mt-4 h-5"></div>
+                    <!-- Geolocation Status -->
+                    <div id="geolocation-status" class="container text-sm py-4 text-gray-500 mt-4 sm:h-10"></div>
                 </div>
 
+
                 <!-- Toggle Filters Button -->
-                <button type="button" id="toggle-filters-btn" class="mt-0 mb-6 text-amber-600 hover:text-amber-800 font-semibold py-2 px-4 border border-amber-500 hover:border-amber-700 rounded-lg transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-400 w-full sm:w-auto">+ Filters</button>
+                <button type="button" id="toggle-filters-btn" class="mt-4 mb-6 text-amber-600 hover:text-amber-800 font-semibold py-2 px-4 border border-amber-500 hover:border-amber-700 rounded-lg transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-400 w-full sm:w-auto">+ Filters</button>
 
                 <!-- Additional Filters Container -->
                 <div id="additional-filters-container" class="hidden">
