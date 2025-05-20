@@ -1,5 +1,123 @@
 'use strict';
 
+// City coordinates and distance threshold
+const cityCoordinates = {
+    stockholm: { lat: 59.3293, lon: 18.0686 },
+    gothenburg: { lat: 57.7089, lon: 11.9746 }
+};
+const MAX_DISTANCE_KM = 50; // Max distance in km to be considered "near" a city
+
+// Haversine distance calculation
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the earth in km
+    const dLat = deg2rad(lat2 - lat1);
+    const dLon = deg2rad(lon2 - lon1);
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const d = R * c; // Distance in km
+    return d;
+}
+
+function deg2rad(deg) {
+    return deg * (Math.PI / 180);
+}
+
+// Helper function to select a location radio button
+function selectLocationRadio(cityValue) {
+    const radio = document.querySelector(`input[name="location"][value="${cityValue}"]`);
+    if (radio) {
+        radio.checked = true;
+    }
+}
+
+// Set default location based on geolocation
+function setDefaultLocation() {
+    const geolocationStatus = document.getElementById('geolocation-status');
+    const locationRadios = document.querySelectorAll('input[name="location"]');
+
+    if (!navigator.geolocation) {
+        geolocationStatus.textContent = 'Geolocation not supported. Defaulting to "Anywhere".';
+        selectLocationRadio('Anywhere');
+        return;
+    }
+
+    const options = {
+        enableHighAccuracy: false,
+        timeout: 10000,
+        maximumAge: 0
+    };
+
+    function successCallback(position) {
+        const userLat = position.coords.latitude;
+        const userLon = position.coords.longitude;
+
+        geolocationStatus.textContent = 'Determining closest city...';
+
+        const distStockholm = getDistanceFromLatLonInKm(
+            userLat, userLon,
+            cityCoordinates.stockholm.lat, cityCoordinates.stockholm.lon
+        );
+        const distGothenburg = getDistanceFromLatLonInKm(
+            userLat, userLon,
+            cityCoordinates.gothenburg.lat, cityCoordinates.gothenburg.lon
+        );
+
+        if (distStockholm <= MAX_DISTANCE_KM && distGothenburg <= MAX_DISTANCE_KM) {
+            // User is near both cities, select the closer one
+            if (distStockholm < distGothenburg) {
+                selectLocationRadio('Stockholm');
+                geolocationStatus.textContent = 'Location automatically set to Stockholm.';
+            } else {
+                selectLocationRadio('Gothenburg');
+                geolocationStatus.textContent = 'Location automatically set to Gothenburg.';
+            }
+        } else if (distStockholm <= MAX_DISTANCE_KM) {
+            selectLocationRadio('Stockholm');
+            geolocationStatus.textContent = 'Location automatically set to Stockholm.';
+        } else if (distGothenburg <= MAX_DISTANCE_KM) {
+            selectLocationRadio('Gothenburg');
+            geolocationStatus.textContent = 'Location automatically set to Gothenburg.';
+        } else {
+            selectLocationRadio('Anywhere');
+            geolocationStatus.textContent = 'Location set to "Anywhere" as you are not near Stockholm or Gothenburg.';
+        }
+
+        // Clear status message after 3 seconds
+        setTimeout(() => {
+            geolocationStatus.textContent = '';
+        }, 3000);
+    }
+
+    function errorCallback(error) {
+        let errorMessage = '';
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                errorMessage = 'Location permission denied. Defaulting to "Anywhere".';
+                break;
+            case error.POSITION_UNAVAILABLE:
+                errorMessage = 'Location information unavailable. Defaulting to "Anywhere".';
+                break;
+            case error.TIMEOUT:
+                errorMessage = 'Location request timed out. Defaulting to "Anywhere".';
+                break;
+            default:
+                errorMessage = 'An error occurred while getting your location. Defaulting to "Anywhere".';
+        }
+        geolocationStatus.textContent = errorMessage;
+        selectLocationRadio('Anywhere');
+
+        // Clear error message after 3 seconds
+        setTimeout(() => {
+            geolocationStatus.textContent = '';
+        }, 3000);
+    }
+
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+}
+
 // Form handling will be implemented in subsequent tasks
 document.addEventListener('DOMContentLoaded', () => {
     // Get DOM element references (FE-JS-IDX-AI-001)
@@ -13,6 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Get references for collapsible filters (FE-JS-IDX-COL-001)
     const toggleFiltersBtn = document.getElementById('toggle-filters-btn');
     const additionalFiltersContainer = document.getElementById('additional-filters-container');
+
+    // Set default location based on geolocation
+    setDefaultLocation();
 
     // Add toggle filters button click handler (FE-JS-IDX-COL-002, FE-JS-IDX-COL-003)
     toggleFiltersBtn.addEventListener('click', () => {

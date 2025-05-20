@@ -34,13 +34,14 @@ h2 {font-family: "Rock Salt";}
                 <!-- Location Filter -->
                 <div class="mb-6 mt-8">
                     <label class="block mb-2 text-lg font-medium text-gray-800">Location</label>
+                    <div id="geolocation-status" class="text-sm text-gray-500 mb-2 h-5"></div>
                     <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-2 sm:space-y-0">
                         <label for="loc-stockholm" class="inline-flex items-center cursor-pointer text-gray-700 hover:text-amber-600">
                             <input id="loc-stockholm" type="radio" name="location" value="Stockholm" class="form-radio h-5 w-5 text-amber-600 focus:ring-amber-500 border-gray-300">
                             <span class="ml-2">Stockholm</span>
                         </label>
                         <label for="loc-gothenburg" class="inline-flex items-center cursor-pointer text-gray-700 hover:text-amber-600">
-                            <input id="loc-gothenburg" type="radio" name="location" value="Gothenburg" checked class="form-radio h-5 w-5 text-amber-600 focus:ring-amber-500 border-gray-300">
+                            <input id="loc-gothenburg" type="radio" name="location" value="Gothenburg" class="form-radio h-5 w-5 text-amber-600 focus:ring-amber-500 border-gray-300">
                             <span class="ml-2">Gothenburg</span>
                         </label>
                         <label for="loc-anywhere" class="inline-flex items-center cursor-pointer text-gray-700 hover:text-amber-600">
