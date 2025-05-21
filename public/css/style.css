@@ -389,6 +389,9 @@
   .w-60 {
     width: calc(var(--spacing) * 60);
   }
+  .w-65 {
+    width: calc(var(--spacing) * 65);
+  }
   .w-70 {
     width: calc(var(--spacing) * 70);
   }
@@ -710,6 +713,9 @@
   }
   .text-amber-600 {
     color: var(--color-amber-600);
+  }
+  .text-amber-800 {
+    color: var(--color-amber-800);
   }
   .text-gray-200 {
     color: var(--color-gray-200);
@@ -1178,6 +1184,16 @@
   .md\:mb-0 {
     @media (width >= 48rem) {
       margin-bottom: calc(var(--spacing) * 0);
+    }
+  }
+  .md\:mb-4 {
+    @media (width >= 48rem) {
+      margin-bottom: calc(var(--spacing) * 4);
+    }
+  }
+  .md\:mb-6 {
+    @media (width >= 48rem) {
+      margin-bottom: calc(var(--spacing) * 6);
     }
   }
   .md\:mb-8 {
