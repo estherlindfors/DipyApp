@@ -1,3 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities; 
+/* Example: tailwind-input.css or src/input.css */
+@import "tailwindcss"; /* or your @tailwind base, components, utilities */
+
+
+

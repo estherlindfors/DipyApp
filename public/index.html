@@ -12,21 +12,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <style>
-h1 {font-family: "Lilita One";}
-h2 {font-family: "Rock Salt";} 
-</style>
+        h1 {font-family: "Lilita One";}
+        h2 {font-family: "Rock Salt";} 
+        body {
+            background-color: #f1eee6; /* Your sand color */
+            position: relative; 
+            overflow-x: hidden; 
+        }
+    </style>
 </head>
-<body class="bg-stone-100 font-sans">
+<body class="font-sans">
 
-    <div class="container mx-auto p-4 min-h-screen flex flex-col items-center pt-10 sm:pt-16">
-        <header class="text-center mb-4 sm:mb-4">
+    <!-- Background images - DESKTOP -->
+    <!-- berg.png: Top left on desktop, HIDDEN ON MOBILE -->
+    <img src="images/berg.png" alt="Mountain illustration" 
+         class="hidden md:block md:absolute md:top-16 md:left-12 md:w-80 md:h-auto md:z-[-10] pointer-events-none"
+         aria-hidden="true"> 
+
+    <!-- fika.png: Bottom left on desktop, HIDDEN ON MOBILE -->
+    <img src="images/fika.png" alt="Cafe table illustration" 
+         class="hidden md:block md:absolute md:bottom-20 md:left-30 md:w-40 md:h-auto md:z-[-10] pointer-events-none" 
+         aria-hidden="true">
+
+    <!-- stargazing.png: Bottom right on desktop, HIDDEN ON MOBILE -->
+    <img src="images/stargazing.png" alt="Person stargazing illustration" 
+         class="hidden md:block md:absolute md:bottom-12 md:right-20 md:w-70 md:h-auto md:z-[-10] pointer-events-none" 
+         aria-hidden="true">
+    <!-- End background images - DESKTOP -->
+
+    <div class="container mx-auto p-4 min-h-screen flex flex-col items-center pt-10 sm:pt-16 relative z-0"> 
+        <header class="text-center mb-4 sm:mb-4 relative z-10">
             <h1 class="font-lilita text-5xl sm:text-7xl text-amber-500 text-center mb-6 sm:mb-6">DIPY</h1>
             <h2 class="text-md sm:text-lg text-gray-700 font-semibold max-w-2xl mx-auto mb-2 sm:mb-2">
                 Discover your next adventure!
             </h2>
         </header>
-        <main class="w-full max-w-lg"></main>
-        <form id="filter-form" class="w-full max-w-lg bg-white p-6 sm:p-8 rounded-lg">
+        
+        <form id="filter-form" class="w-full max-w-lg bg-white p-6 sm:p-8 rounded-lg relative z-10"> 
+            <!-- Relative z-10 to ensure form is above background images -->
             <p class="text-sm max-w-md text-gray-600 mb-5">
                 Pick your filters or throw caution to the wind and generate a random activity. Not feeling it? Just generate a new one. But hey – we dare you to try something even if you're unsure. You might be surprised!
               </p>
@@ -34,9 +57,6 @@ h2 {font-family: "Rock Salt";}
                 <!-- Location Filter -->
                 <div class="mb-6 mt-8">
                     <label class="block mb-4 text-lg font-medium text-gray-800">Location</label>
-                    
-                   
-        
                     <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-2 sm:space-y-0">
                         <label for="loc-stockholm" class="inline-flex items-center cursor-pointer text-gray-700 hover:text-amber-600">
                             <input id="loc-stockholm" type="radio" name="location" value="Stockholm" class="form-radio h-5 w-5 text-amber-600 focus:ring-amber-500 border-gray-300">
@@ -47,21 +67,16 @@ h2 {font-family: "Rock Salt";}
                             <span class="ml-2">Gothenburg</span>
                         </label>
                         <label for="loc-anywhere" class="inline-flex items-center cursor-pointer text-gray-700 hover:text-amber-600">
-                            <input id="loc-anywhere" type="radio" name="location" value="Anywhere" class="form-radio h-5 w-5 text-amber-600 focus:ring-amber-500 border-gray-300">
+                            <input id="loc-anywhere" type="radio" name="location" value="Anywhere" checked class="form-radio h-5 w-5 text-amber-600 focus:ring-amber-500 border-gray-300">
                             <span class="ml-2">Anywhere</span>
                         </label>
                     </div>
-                    <!-- Geolocation Status -->
                     <div id="geolocation-status" class="container text-sm text-gray-500 mt-4 sm:h-5"></div>
                 </div>
 
-
-                <!-- Toggle Filters Button -->
                 <button type="button" id="toggle-filters-btn" class="mt-0 mb-6 text-amber-600 hover:text-amber-800 font-semibold py-2 px-4 border border-amber-500 hover:border-amber-700 rounded-lg transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-400 w-full sm:w-auto">+ Filters</button>
 
-                <!-- Additional Filters Container -->
                 <div id="additional-filters-container" class="hidden">
-                    <!-- Participants Filter -->
                     <div class="mb-6">
                         <label for="participants-filter" class="block mb-2 text-lg font-medium text-gray-800">Number of Participants</label>
                         <select id="participants-filter" name="participants" class="bg-gray-50 border border-gray-300 text-gray-700 text-md rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-3">
@@ -73,8 +88,6 @@ h2 {font-family: "Rock Salt";}
                             <option value="5+">5+ People</option>
                         </select>
                     </div>
-
-                    <!-- Environment Filter -->
                     <div class="mb-6">
                         <label class="block mb-2 text-lg font-medium text-gray-800">Environment</label>
                         <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-2 sm:space-y-0">
@@ -92,8 +105,6 @@ h2 {font-family: "Rock Salt";}
                             </label>
                         </div>
                     </div>
-
-                    <!-- Price Range Filter -->
                     <div class="mb-6">
                         <label for="price-filter" class="block mb-2 text-lg font-medium text-gray-800">Price Range</label>
                         <select id="price-filter" name="price" class="bg-gray-50 border border-gray-300 text-gray-700 text-md rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-3">
@@ -104,8 +115,6 @@ h2 {font-family: "Rock Salt";}
                             <option value="400+">400+ SEK</option>
                         </select>
                     </div>
-
-                    <!-- Exertion Level Filter -->
                     <div class="mb-6">
                         <label for="exertion-filter" class="block mb-2 text-lg font-medium text-gray-800">Exertion Level</label>
                         <select id="exertion-filter" name="exertion" class="bg-gray-50 border border-gray-300 text-gray-700 text-md rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-3">
@@ -117,17 +126,19 @@ h2 {font-family: "Rock Salt";}
                     </div>
                 </div>
 
-                <!-- Generate Button -->
                 <button type="submit" id="generate-btn" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-amber-300 text-lg mt-4">
                     Generate Activity
                 </button>
 
-                <!-- Message Area -->
                 <div id="message-area" class="mt-6 h-6 text-center"></div>
             </form>
-        </main>
+        
+        <!-- berg.png - MOBILE ONLY - Placed before the footer inside the container -->
+        <img src="images/berg.png" alt="Mountain illustration" 
+             class="block md:hidden mx-auto mt-12 mb-4 w-70 h-auto z-[-10] pointer-events-none"
+             aria-hidden="true">
 
-         <footer class="mt-16 mb-8 text-center text-gray-600 text-sm">
+        <footer class="mt-8 md:mt-16 mb-8 text-center text-gray-600 text-sm relative z-10"> <!-- Adjusted mt for mobile -->
             <p>© <script>document.write(new Date().getFullYear())</script> Dipy. All rights reserved.</p>
             <p class="mt-1">
                 <a href="index.html" class="text-amber-600 hover:text-amber-800">Home</a>
@@ -135,7 +146,7 @@ h2 {font-family: "Rock Salt";}
                 <a href="about.html" class="text-amber-600 hover:text-amber-800">About</a>
             </p>
         </footer>
-    </div>
+    </div> <!-- End of div.container -->
 
     <script src="js/script.js" defer></script>
 </body>
