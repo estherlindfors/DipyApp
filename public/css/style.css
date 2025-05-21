@@ -345,6 +345,27 @@
   .flex-1 {
     flex: 1;
   }
+  .rotate-3 {
+    rotate: 3deg;
+  }
+  .rotate-4 {
+    rotate: 4deg;
+  }
+  .rotate-5 {
+    rotate: 5deg;
+  }
+  .rotate-7 {
+    rotate: 7deg;
+  }
+  .rotate-10 {
+    rotate: 10deg;
+  }
+  .rotate-15 {
+    rotate: 15deg;
+  }
+  .rotate-22 {
+    rotate: 22deg;
+  }
   .rotate-45 {
     rotate: 45deg;
   }

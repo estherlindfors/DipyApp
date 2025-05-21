@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (icon) {
                 // Example using class for rotation:
-                icon.classList.toggle('rotate-45', !isExpanded);
+                icon.classList.toggle('rotate-3', !isExpanded);
                 // Or if you prefer text change:
                 // icon.textContent = isExpanded ? '+' : '−'; 
             }
